@@ -1,0 +1,106 @@
+//Да се въведе числител и знаменател за правилна дроб.
+//Да се изведе сума от дроби, равна на първоначално въведената,
+//чиито числители са единици
+decimal chislitel = decimal.Parse(Console.ReadLine());
+decimal znamenatel = decimal.Parse(Console.ReadLine());
+decimal result = chislitel / znamenatel;
+decimal i = 2;
+while(result != 0)
+{
+    decimal r = 1 / i;
+    if(r <= result)
+    {
+        Console.WriteLine("1/" + i + " ");
+        result -= r;
+    }
+    i++;
+}
+
+
+//Да се въведе списък с монети и желана сума.
+//Да се използва алчен алгоритъм за формиране на желаната сума
+//като се използват неограничен брой монети от всяка възможна
+int sum = int.Parse(Console.ReadLine());
+List<int> coins = Console.ReadLine().Split().Select(int.Parse).OrderByDescending(x => x).ToList();
+List<int> result = new List<int>();
+for(int i = 0; i < coins.Count; i++)
+{
+    if (coins[i] <= sum)
+    {
+        result.Add(coins[i]);
+        sum -= coins[i];
+        if(sum == 0)
+        {
+            break;
+        }
+        i--;
+    }
+}
+if(sum != 0)
+{
+    Console.WriteLine("Nqma reshenie");
+}
+else
+{
+    for(int i =0;i < result.Count; i++)
+    {
+        Console.WriteLine(result[i]);
+    }
+}
+
+
+//Да се въведе списък с предмети.
+//Всеки предмет да има цена и тегло.
+//Да се въведе максимално тегло за раница.
+//Да се добавят такива предмети в раницата, така че
+//общата стойност на тях да е по-голяма
+double weight = double.Parse(Console.ReadLine());
+int count = int.Parse(Console.ReadLine());
+List<Item> items = new List<Item>();
+for (int i = 0; i < count; i++)
+{
+    items.Add(new Item(double.Parse(Console.ReadLine()), double.Parse(Console.ReadLine())));
+}
+items.Sort();
+for (int i = 0; i < items.Count; i++)
+{
+    if (items[i].Weight <= weight)
+    {
+        items[i].Display();
+        weight -= items[i].Weight;
+    }
+}
+class Item : IComparable<Item>
+{
+    public double price;
+    public double weight;
+    public double ratio;
+    public double Price
+    {
+        get { return price; }
+        set { price = value; }
+    }
+    public double Weight
+    {
+        get { return weight; }
+        set { weight = value; }
+    }
+    public double Ratio
+    {
+        get { return ratio; }
+    }
+    public Item(double price, double weight)
+    {
+        this.price = price;
+        this.weight = weight;
+        ratio = price / weight;
+    }
+    public int CompareTo(Item other)
+    {
+        return other.ratio.CompareTo(ratio);
+    }
+    public void Display()
+    {
+        Console.WriteLine(price + " " + weight);
+    }
+}
