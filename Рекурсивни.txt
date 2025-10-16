@@ -13,4 +13,69 @@
             {
                 return Fibonacci(num-1) + Fibonacci(num - 2);
             }
+
         }
+
+НОД/НОК
+        static void Main(string[] args)
+        {
+            Console.WriteLine(NOD(15, 25));
+            Console.WriteLine(NOK(15, 25));
+        }
+        static int NOD(int a, int b)
+        {
+            if (a == b)
+            {
+                return a;
+            }
+            else
+            {
+                if(a > b)
+                {
+                    return NOD(a-b, b);
+                }
+                else
+                {
+                    return NOD(a, b - a);
+                }
+            }
+        }
+        static int NOK(int a, int b)
+        {
+            return (a*b)/NOD(a, b);
+        }
+
+Факториел
+        static void Main(string[] args)
+        {
+            Console.WriteLine(Factorial(10));
+        }
+        static int Factorial(int n)
+        {
+            if (n == 0)
+            {
+                return 1;
+            }
+            else
+            {
+                return n * Factorial(n - 1);
+            }
+        }
+
+До n да се отпечатат
+       static void Main(string[] args)
+       {
+           Display(5, 3);
+       }
+       static void Display(int n, int current)
+       {
+           if (current == n)
+           {
+               Console.WriteLine(current);
+           }
+           else
+           {
+               Console.WriteLine(current);
+               Display(n, current + 1);
+           }
+       }
