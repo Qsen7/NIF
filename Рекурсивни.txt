@@ -112,3 +112,25 @@
         }
 
 Извежда до n само четните
+        static void Main(string[] args)
+        {
+            PrintEven(20, 1);
+        }
+        static void PrintEven(int n, int current)
+        {
+            if (current == n)
+            {
+                if (current % 2 == 0)
+                {
+                    Console.WriteLine(n);
+                }
+            }
+            else
+            {
+                if(n % 2 == 0)
+                {
+                    Console.WriteLine(current);
+                }
+                PrintEven(n, current + 1);
+            }
+        }
