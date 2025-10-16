@@ -79,3 +79,17 @@
                Display(n, current + 1);
            }
        }
+
+Отделно да ги извежда
+        static void Main(string[] args)
+        {
+            PrintDigits("1234");
+        }
+        static void PrintDigits(string number)
+        {
+            if (number.Length > 0)
+            {
+                Console.Write(number[0]+" ");
+                PrintDigits(number.TrimStart(number[0]));
+            }
+        }
