@@ -93,3 +93,22 @@
                 PrintDigits(number.TrimStart(number[0]));
             }
         }
+
+Колко уникални символа има
+        static void Main(string[] args)
+        {
+            Console.WriteLine(PrintDigits("1234555"));
+        }
+        static int PrintDigits(string number)
+        {
+            if (number.Length == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                return 1 + PrintDigits(number.TrimStart(number[0]));
+            }
+        }
+
+Извежда до n само четните
