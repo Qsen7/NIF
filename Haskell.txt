@@ -1,0 +1,26 @@
+Проверява за четно число
+isEven x = x `mod` 2 == 0
+main = do
+  x <- getLine
+  let x1 = read x :: Int
+  print(isEven x1)
+
+Да се намери хипотенузата от 2 катети
+hypotenuse a b = sqrt (a^2 + b^2)
+main = do
+  a <- getLine
+  let a1 = read a :: Float
+  b <- getLine
+  let b1 = read b :: Float
+  print(hypotenuse a1 b1)
+
+С bool да проверява дали двете въведени числа са положителни или отрицателни
+sameSign a b = (a > 0 && b > 0) || (a < 0 && b < 0)
+main = do
+  a <- getLine
+  let a1 = read a :: Int
+  b <- getLine
+  let b1 = read b :: Int
+  print(sameSign a1 b1)
+
+Invert от + на - от - на +
