@@ -1,0 +1,84 @@
+От двоично на десетично
+            string binary = Console.ReadLine();
+            int result = 0;
+            int multiplier = 1;
+            for (int i = binary.Length-1; i >= 0; i--)
+            {
+                result += int.Parse(binary[i].ToString()) * multiplier;
+                multiplier *= 2;
+            }
+            Console.WriteLine(result);
+
+От десетично на двоично
+            int number = int.Parse(Console.ReadLine());
+            string result = "";
+            while (number > 0)
+            {
+                result += number % 2;
+                number /= 2;
+            }
+            string finalResult = "";
+            for (int i = result.Length-1; i >= 0; i--)
+            {
+                finalResult += result[i];
+            }
+            Console.WriteLine(finalResult);
+
+От двоично на десетично на шестнадесетично
+        static int BinaryToDecimal(string binary)
+        {
+            int result = 0;
+            int multiplier = 1;
+            for (int i = binary.Length - 1; i >= 0; i--)
+            {
+                result += int.Parse(binary[i].ToString()) * multiplier;
+                multiplier *= 2;
+            }
+            return result;
+        }
+        static void Main(string[] args)
+        {
+            string binary = Console.ReadLine();
+            int dec = BinaryToDecimal(binary);
+            Console.WriteLine("Decimal: " + dec);
+            string hexa = "";
+            while (dec > 0)
+            {
+                if(dec % 16 == 10)
+                {
+                    hexa += "A";
+                }
+                else if(dec % 16 == 11)
+                {
+                    hexa += "B";
+                }
+                else if (dec % 16 == 12)
+                {
+                    hexa += "C";
+                }
+                else if (dec % 16 == 13)
+                {
+                    hexa += "D";
+                }
+                else if (dec % 16 == 14)
+                {
+                    hexa += "E";
+                }
+                else if (dec % 16 == 15)
+                {
+                    hexa += "F";
+                }
+                else
+                {
+                    hexa += dec % 16;
+                }
+                dec /= 16;
+            }
+            string hexaResult = "";
+            for(int i = hexa.Length-1; i >= 0; i--)
+            {
+                hexaResult += hexa[i];
+            }
+            Console.WriteLine("Hex: " + hexaResult);
+        }
+    }
