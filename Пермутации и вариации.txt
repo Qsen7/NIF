@@ -1,3 +1,4 @@
+Пермутации без повторения
 static void Main(string[] args)
 {
     List<int> elements = new List<int> { 1, 2, 3, 4};
@@ -29,4 +30,164 @@ static List<List<T>> GetPermutations<T>(List<T> list)
     }
     return result;
 
+}
+
+Пермутации с повторения
+static void Main(string[] args)
+{
+    List<int> elements = new List<int> { 1, 2, 3, 4, 5};
+    int permutationLength = 3;
+    var permutations = GetPermutationsWithRepetition(elements, permutationLength);
+    foreach (var permutation in permutations)
+    {
+        Console.WriteLine(string.Join(",", permutation));
+    }
+}
+static List<List<T>> GetPermutationsWithRepetition<T>(List<T> list, int length)
+{
+    List<List<T>> result = new List<List<T>>();
+    if(length == 0)
+    {
+        result.Add(new List<T>());
+        return result;
+    }
+    var shorterPermutation = GetPermutationsWithRepetition(list, length - 1);
+    foreach(var shorterPerm in shorterPermutation)
+    {
+        foreach (var element in list)
+        {
+            var newPerm = new List<T>(shorterPerm) { element };
+            result.Add(newPerm);
+        }
+    }
+    return result;
+}
+
+Вариации без повторения
+static void Main(string[] args)
+{
+    List<int> elements = new List<int> { 1, 2, 3, 4};
+    int variationLength = 3;
+    var variations = GetVariationsWithoutRepetition(elements, variationLength);
+    foreach (var variation in variations)
+    {
+        Console.WriteLine(string.Join(",", variation));
+    }
+}
+static List<List<T>> GetVariationsWithoutRepetition<T>(List<T> list, int length)
+{
+    List<List<T>> result = new List<List<T>>();
+    if(length == 0)
+    {
+        result.Add(new List<T>());
+        return result;
+    }
+    for (int i = 0; i < list.Count; i++)
+    {
+        T element = list[i];
+        List<T> remainingList = new List<T>(list);
+        remainingList.RemoveAt(i);
+        var shorterVariation = GetVariationsWithoutRepetition(remainingList, length - 1);
+        foreach (var variation in shorterVariation)
+        {
+            variation.Insert(0, element);
+            result.Add(variation);
+        }
+    }
+    return result;
+}
+
+Вариации с повторения
+static void Main(string[] args)
+{
+    List<int> elements = new List<int> { 1, 2, 3, 4};
+    int variationLength = 3;
+    var variations = GetVariationsWithRepetition(elements, variationLength);
+    foreach (var variation in variations)
+    {
+        Console.WriteLine(string.Join(",", variation));
+    }
+}
+static List<List<T>> GetVariationsWithRepetition<T>(List<T> list, int length)
+{
+    List<List<T>> result = new List<List<T>>();
+    if(length == 0)
+    {
+        result.Add(new List<T>());
+        return result;
+    }
+    var shorterVariations = GetVariationsWithRepetition(list, length - 1);
+    foreach(var shorterVariation in shorterVariations)
+    {
+        foreach (var element in list)
+        {
+            var newVariation = new List<T>(shorterVariation) { element };
+            result.Add(newVariation);
+        }
+    }   
+    return result;
+}
+
+Комбинации без повторения
+static void Main(string[] args)
+{
+    List<int> elements = new List<int> { 1, 2, 3, 4};
+    int combinationLength = 2;
+    var combinations = GetCombinationsWithoutRepetition(elements, combinationLength);
+    foreach (var combination in combinations)
+    {
+        Console.WriteLine(string.Join(",", combination));
+    }
+}
+static List<List<T>> GetCombinationsWithoutRepetition<T>(List<T> list, int length)
+{
+    List<List<T>> result = new List<List<T>>();
+    if(length == 0)
+    {
+        result.Add(new List<T>());
+        return result;
+    }
+    for (int i = 0; i <= list.Count - length; i++)
+    {
+        T element = list[i];
+        var remainingCombination = GetCombinationsWithoutRepetition(list.GetRange(i + 1, list.Count - (i + 1)), length - 1);
+        foreach (var combination in remainingCombination)
+        {
+            combination.Insert(0, element);
+            result.Add(combination);
+        }
+    }
+    return result;
+}
+
+Комбинации и с повторения
+static void Main(string[] args)
+{
+    List<int> elements = new List<int> { 1, 2, 3, 4};
+    int combinationLength = 3;
+    var combinations = GetCombinationsWithRepetition(elements, combinationLength);
+    foreach (var combination in combinations)
+    {
+        Console.WriteLine(string.Join(",", combination));
+    }
+}
+static List<List<T>> GetCombinationsWithRepetition<T>(List<T> list, int length)
+{
+    List<List<T>> result = new List<List<T>>();
+    if(length == 0)
+    {
+        result.Add(new List<T>());
+        return result;
+    }
+    for (int i = 0; i < list.Count; i++)
+    {
+        T element = list[i];
+        var remainingCombination = GetCombinationsWithRepetition(list.GetRange(i, list.Count - i), length - 1);
+        foreach (var combination in remainingCombination)
+        {
+            combination.Insert(0, element);
+            result.Add(combination);
+        }
+    }
+    return result;
 }
