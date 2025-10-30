@@ -1,0 +1,32 @@
+static void Main(string[] args)
+{
+    List<int> elements = new List<int> { 1, 2, 3, 4};
+    var permutations = GetPermutations(elements);
+    foreach (var permutation in permutations)
+    {
+        Console.WriteLine(string.Join(",", permutation));
+    }
+}
+static List<List<T>> GetPermutations<T>(List<T> list)
+{
+    List<List<T>> result = new List<List<T>>();
+    if(list.Count == 0)
+    {
+        result.Add(new List<T>());
+        return result;
+    }
+    for (int i = 0; i < list.Count; i++)
+    {
+        T element = list[i];
+        List<T> remainingList = new List<T>(list);
+        remainingList.RemoveAt(i);
+        var remainingPermutations = GetPermutations(remainingList);
+        foreach(var perm in remainingPermutations)
+        {
+            perm.Insert(0, element);
+            result.Add(perm);
+        }
+    }
+    return result;
+
+}
