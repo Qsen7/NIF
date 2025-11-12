@@ -112,36 +112,80 @@
         }
 
 Извежда до n само четните
-        static void Main(string[] args)
+    static void Main(string[] args)
+    {
+        PrintEven(20, 1);
+    }
+    static void PrintEven(int n, int current)
+    {
+        if (current == n)
         {
-            PrintEven(20, 1);
-        }
-        static void PrintEven(int n, int current)
-        {
-            if (current == n)
+            if (current % 2 == 0)
             {
-                if (current % 2 == 0)
-                {
-                    Console.WriteLine(n);
-                }
-            }
-            else
-            {
-                if(n % 2 == 0)
-                {
-                    Console.WriteLine(current);
-                }
-                PrintEven(n, current + 1);
+                Console.WriteLine(current);
             }
         }
+        else
+        {
+            if (current % 2 == 0)
+            {
+                Console.WriteLine(current);
+            }
+            PrintEven(n, current + 1);
+        }
+    }
 
 //Да се напише с рекурсия функция, която извежда четните числа от 100 до 1
-
-//Да се напише с рекурсия функция, която извежда кратните на 8 числа в диапазона от a до b
-
-//Да се напише с рекурсия функция, която намира сумата на числата в диапазона от a до b
-static int SumAtoB(int a, int b)
+static void Main(string[] args)
 {
-if(a==b) return a;
-else return a + SumAtoB(a + 1, b);
+    PrintEvenBackward(1, 100);
 }
+static void PrintEvenBackward(int n, int current)
+{
+    if (current == n)
+    {
+        if (current % 2 == 0)
+        {
+            Console.WriteLine(current);
+        }
+    }
+    else
+    {
+        if (current % 2 == 0)
+        {
+            Console.WriteLine(current);
+        }
+        PrintEvenBackward(n, current - 1);
+    }
+}
+//Да се напише с рекурсия функция, която извежда кратните на 8 числа в диапазона от a до b
+    static void Main(string[] args)
+    {
+        PrintMultiplesOf8(10, 100);
+    }
+
+    static void PrintMultiplesOf8(int a, int b)
+    {
+        if (a == b)
+        {
+            if (a % 8 == 0)
+            {
+                Console.WriteLine(a);
+            }
+        }
+        else
+        {
+            if (a % 8 == 0)
+            {
+                Console.WriteLine(a);
+            }
+            PrintMultiplesOf8(a + 1, b);
+        }
+    }
+//Да се напише с рекурсия функция, която намира сумата на числата в диапазона от a до b
+        static int SumAtoB(int a, int b)
+        {
+        if(a==b) return a;
+        else return a + SumAtoB(a + 1, b);
+        }
+
