@@ -188,4 +188,25 @@ static void PrintEvenBackward(int n, int current)
         if(a==b) return a;
         else return a + SumAtoB(a + 1, b);
         }
+//извежда списък с елементите с рекурсия
+static void Display(List<string> list)
+{
+    if(list.Count == 0)
+    {
+
+    }
+    else
+    {
+        Console.WriteLine(list[0]);
+        list.RemoveAt(0);
+        Display(list);
+    }
+}
+
+List<string> list = new List<string>();
+list.Add("A");
+list.Add("A");
+list.Add("A");
+list.Add("A");
+Display(list);
 
