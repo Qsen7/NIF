@@ -24,3 +24,19 @@ main = do
   print(sameSign a1 b1)
 
 Invert от + на - от - на +
+...
+
+
+Фибоначи, Факториел, НОД
+fib 1 = 1
+fib 2 = 1
+fib x = fib(x-1) + fib(x-2)
+
+fact 0 = 1
+fact x = x*fact(x-1)
+
+nod a b = if (a==b) then a else if (a>b) then (nod (a-b) b) else (nod a (b-a))
+main = do
+  print(fib 6)
+  print(fact 6)
+  print(nod 10 15)
