@@ -58,3 +58,13 @@ sumNum n =
       sumNum (n - 1)
 main = do
   sumNum 10
+
+Функция която изписва числата по обратен ред от b до a
+func a b = do
+  if(a==b) then do
+    print b
+  else do
+    print b
+    func a (b-1)
+main = do
+  func 5 10
