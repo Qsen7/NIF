@@ -68,3 +68,9 @@ func a b = do
     func a (b-1)
 main = do
   func 5 10
+
+Функция? която намира броя на елементите в масива
+len [] = 0
+len(x:xs) = 1 + len (xs)
+main = do
+  print(len [1,2,3,4,5,6])
