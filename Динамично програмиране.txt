@@ -67,3 +67,61 @@ for (int i = 0; i < coins.Count; i++)
 }
 
 Console.WriteLine(results[sum]);
+
+//Намира най-дългата редица от нарастващи елементи като може да се прескачат
+int[] nums = Console.ReadLine().Split().Select(int.Parse).ToArray();
+int[] lengths = new int[nums.Length];
+int[] previous = new int[nums.Length];
+
+for (int i = 0; i < lengths.Length; i++)
+{
+	lengths[i] = 1;
+	previous[i] = -1;
+}
+
+for (int i = 0; i < nums.Length; i++)
+{
+	for (int j = 0; j < i; j++)
+	{
+		if (nums[j] < nums[i])
+		{
+			if (lengths[j] + 1 > lengths[i])
+			{
+				lengths[i] = lengths[j] + 1;
+				previous[i] = j;
+			}
+		}
+	}
+}
+
+Console.WriteLine(lengths.Max());
+
+int longest = 0;
+int index = -1;
+
+for (int i = 0; i < nums.Length; i++)
+{
+	if (lengths[i] > longest)
+	{
+		longest = lengths[i];
+		index = i;
+	}
+}
+
+Stack<int> stack = new Stack<int>();
+stack.Push(nums[index]);
+
+while (true)
+{
+	index = previous[index];
+	if (index != -1)
+	{
+		stack.Push(nums[index]);
+	}
+	else break;
+}
+
+while (stack.Count != 0)
+{
+	Console.WriteLine(stack.Pop());
+}
