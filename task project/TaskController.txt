@@ -79,5 +79,41 @@ namespace TeisterMask.Controllers
                 return View("Edit", taskModel);
             }
         }
+
+        [HttpGet]
+        [Route("delete/{id}")]
+        public ActionResult Delete(int id)
+        {
+            using (var context = new TaskContext())
+            {
+                var taskFromDb = context.Tasks.Find(id);
+                if(taskFromDb == null)
+                {
+                    return NotFound();
+                }
+                return View(taskFromDb);
+            }
+        }
+
+        [HttpPost]
+        [Route("delete/{id}")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirm(int id)
+        {
+            using (var context = new TaskContext())
+            {
+                var taskFromDb = context.Tasks.Find(id);
+                if (taskFromDb == null)
+                {
+                    return NotFound();
+                }
+
+                context.Tasks.Remove(taskFromDb);
+                context.SaveChanges();
+
+                return Redirect("/");
+            }
+        }
+
     }
 }
