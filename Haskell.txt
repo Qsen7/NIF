@@ -69,7 +69,8 @@ main = do
   print(nod 10 15)
 
 Функция която намира сумата на числата от 1 до n с рекурсия
-sumNum n = if(n == 1) then 1 else n+sumNum(n-1)
+sumNum 1 = 1
+sumNum n = n+sumNum(n-1)
 main = do
   print(sumNum 10)
 
@@ -113,3 +114,12 @@ len [] = 0
 len(x:xs) = 1 + len (xs)
 main = do
   print(len [1,2,3,4,5,6])
+
+ЗА ТЕСТА
+func1 list number = filter (>number) list
+func2 list1 list2 number = (func1 list1 number) ++ (func1 list2 number)
+func3 list = sum (map (^3) list)
+main = do
+  let list1 = [1,2,3,4,5]
+  let list2 = [6,3,2,1]
+  print(func3 (func2 list1 list2 4))
