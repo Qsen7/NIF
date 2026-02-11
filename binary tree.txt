@@ -1,0 +1,86 @@
+    internal class BinarySearchTree
+    {
+        private Node root;
+        public void Insert(int value)
+        {
+            root = InsertRec(root,value);
+        }
+        private Node InsertRec(Node node, int value)
+        {
+            if (node == null)
+                return new Node(value);
+
+            if (value < node.Value)
+                node.Left = InsertRec(node.Left, value);
+
+            else if (value > node.Value)
+                node.Right = InsertRec(node.Right, value);
+
+            else
+                Console.WriteLine($"Duplicate value{value}");
+            return node;
+        }
+        public bool Search(int value)
+        {
+            return SearchRec(root, value);
+        }
+        private bool SearchRec(Node node, int value)
+        {
+            if(root == null) return false;
+
+            if(value==node.Value) return true;
+
+            else if(value < node.Value)
+                return SearchRec(node.Left, value);
+            
+            else
+                return SearchRec(node.Right,value);
+        }
+
+
+        public void InOrderTraversal()
+        {
+            InOrderRec(root);
+            Console.WriteLine();
+        }
+
+        private void InOrderRec(Node node)
+        {
+            if(node != null)
+            {
+                InOrderRec(node.Left);
+                Console.WriteLine(node.Value+" ");
+                InOrderRec(node.Right);
+            }
+        }
+    }
+
+        internal class Node
+    {
+        public int Value;
+        public Node Left;
+        public Node Right;
+
+        public Node(int value) {
+            Value = value;
+            Left = null;
+            Right = null;
+        }
+    }
+
+        internal class Program
+    {
+        static void Main(string[] args)
+        {
+            BinarySearchTree bst=new BinarySearchTree();
+            Console.WriteLine("Vyvedi chisla");
+            string input=Console.ReadLine();
+            string[] parts=input.Split(' ');
+            foreach(string part in parts)
+            {
+                bst.Insert(int.Parse(part));
+            }
+
+            bst.InOrderTraversal(); 
+        }
+    }
