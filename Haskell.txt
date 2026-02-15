@@ -115,7 +115,6 @@ len(x:xs) = 1 + len (xs)
 main = do
   print(len [1,2,3,4,5,6])
 
-ЗА ТЕСТА
 func1 list number = filter (>number) list
 func2 list1 list2 number = (func1 list1 number) ++ (func1 list2 number)
 func3 list = sum (map (^3) list)
@@ -123,3 +122,15 @@ main = do
   let list1 = [1,2,3,4,5]
   let list2 = [6,3,2,1]
   print(func3 (func2 list1 list2 4))
+----------------------------------------------------------------------------
+Да се създаде списък с кортежи - име и оценка на ученици. Да се изведе името на ученика с най-висока оценка
+bestName xs = head (map fst (filter (\(_, g) -> g == maximum (map snd xs)) xs))
+main = do
+  let students = [ ("Ivan", 5), ("Ben", 2), ("Elena", 8)]
+  print(bestName students)
+
+Списък с кортежи - име и среден успех. Да се изведе броя на отличниците
+excellentCount xs = length (filter (\(_, avg) -> avg >= 5.50) xs)
+main = do
+  let students = [ ("Ivan", 5.5), ("Ben", 2.2), ("Elena", 6)]
+  print(excellentCount students)
