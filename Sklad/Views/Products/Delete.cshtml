@@ -1,0 +1,22 @@
+@model Product
+<h1>Are you sure to delete this product</h1>
+<form asp-controller="Products" asp-action="Delete" method="post">
+    <div>
+        <label asp-for="Name"></label>
+        <input type="text" value="@Model.Name" disabled />
+    </div>
+    <div>
+        <label asp-for="Price"></label>
+        <input type="text" value="@Model.Price" disabled />
+    </div>
+    <div>
+        <label asp-for="Stock"></label>
+        <input type="text" value="@Model.Stock" disabled />
+    </div>
+    <div>
+        <label asp-for="Sklad"></label>
+        <input type="text" value="@Model.Sklad.Name" disabled />
+    </div>
+    <input type="submit" value="Delete" />
+    <button asp-action="Index" asp-controller="Products">Cancel</button>
+</form>
