@@ -1,0 +1,25 @@
+@model ICollection<Product>
+
+<h1>Products</h1>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Stock</th>
+        <th>Price</th>
+        <th>SkladName</th>
+    </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Price</td>
+            <td>@item.Stock</td>
+            <td>@item.Sklad.Name</td>
+            <td>
+                <a asp-action="Edit" asp-controller="Products" asp-route-id="@item.ID">Edit</a>
+                <a asp-action="Delete" asp-controller="Products" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+<button><a asp-action="Create" asp-controller="Products">Add Product</a></button>
