@@ -5,6 +5,6 @@
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseLazyLoadingProxies();
-            optionsBuilder.UseSqlServer("Server=DESKTOP-UA8DIQH; Database=ProductSklad; Integrated Security=true");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-UA8DIQH; Database=ProductSklad; Integrated Security=true; TrustServerCertificate=True;");
         }
     }
