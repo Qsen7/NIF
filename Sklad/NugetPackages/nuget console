@@ -1,0 +1,2 @@
+add-migration Migr
+update-database
