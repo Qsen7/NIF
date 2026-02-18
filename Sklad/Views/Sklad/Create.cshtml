@@ -1,0 +1,13 @@
+@model Sklad
+<h1>Add Sklad</h1>
+<form asp-controller="Sklad" asp-action="Create" method="post">
+    <div>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" type="text" />
+    </div>
+    <div>
+        <label asp-for="Address"></label>
+        <input asp-for="Address" type="text" />
+    </div>
+    <input type="submit" value="ADD Sklad" />
+</form>
