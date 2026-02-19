@@ -1,0 +1,35 @@
+﻿@model Product
+
+<h1>Are you sure you want to edit this product?</h1>
+
+<form asp-controller="Products" asp-action="Edit" method="post">
+
+
+    <div>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+
+    <div>
+        <label asp-for="Price"></label>
+        <input asp-for="Price" class="form-control" />
+    </div>
+
+    <div>
+        <label asp-for="Stock"></label>
+        <input asp-for="Stock" class="form-control" />
+    </div>
+
+    <div>
+        <label asp-for="Sklad"></label>
+        <input asp-for="Sklad" class="form-control" />
+    </div>
+
+    <br />
+
+    <input type="submit" value="Edit" class="btn btn-primary" />
+    <a asp-action="Index" asp-controller="Products" class="btn btn-secondary">
+        Cancel
+    </a>
+
+</form>

@@ -1,0 +1,16 @@
+﻿@model ICollection<Sklad>
+<h1>Skladove</h1>
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Address</th>
+	</tr>
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>@item.Name</td>
+			<td>@item.Address</td>
+		</tr>
+	}
+</table>
+<button><a asp-action="Create" asp-controller="Sklad">Add Sklad</a></button>

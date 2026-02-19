@@ -1,0 +1,27 @@
+﻿@model Product
+<h1>Add product</h1>
+<form asp-controller="Products" asp-action="Create" method="post">
+	<div>
+		<label asp-for="Name"></label>
+		<input asp-for="Name" type="text" />
+	</div>
+	<div>
+		<label asp-for="Price"></label>
+		<input asp-for="Price" type="number" />
+
+	</div>
+	<div>
+		<label asp-for="Stock"></label>
+		<input asp-for="Stock" type="number" />
+
+	</div>
+	<div>
+		<label asp-for="Sklad"></label>
+		<select asp-for="Sklad.ID" asp-items="@ViewBag.SkladoveList">
+			<option>
+				Select Sklad
+			</option>
+		</select>
+	</div>
+	<input type="submit" value="ADD Product" />
+</form>

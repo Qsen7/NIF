@@ -1,0 +1,68 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Product_and_Sklad.Models;
+
+namespace Product_and_Sklad.Controllers
+{
+    public class ProductsController : Controller
+    {
+        private ProductContext context;
+        public ProductsController(ProductContext context)
+        {
+            this.context = context;
+        }
+        [HttpGet]
+        public IActionResult Index()
+        {
+            List<Product> products = context.Products.ToList();
+            return View(products);
+        }
+        [HttpGet]
+        public IActionResult Create()
+        {
+            List<Sklad> list = context.Skladove.ToList();
+            ViewBag.SkladoveList = new SelectList(list, "ID", "Name");
+            return this.View();
+        }
+        [HttpPost]
+        public IActionResult Create(Product model)
+        {
+            //if (this.ModelState.IsValid)
+            //{
+                Sklad sklad = context.Skladove.Find(model.Sklad.ID);
+                var product = new Product
+                {
+                    Price = model.Price,
+                    Name = model.Name,
+                    Stock = model.Stock,
+                    Sklad = sklad
+                };
+                context.Products.Add(product);
+                context.SaveChanges();
+                return RedirectToAction("Index", "products");
+            //}
+            //return this.View();
+        }
+        [HttpGet]
+
+        [Route("delete/{id}")]
+        public IActionResult Delete(int id)
+        {
+            var product = context.Products.Find(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return this.View(product);
+        }
+        [HttpPost]
+        [Route("delete/{id}")]
+        public IActionResult Delete(int id, Product model)
+        {
+            var product = context.Products.Find(id);
+            context.Products.Remove(product);
+            context.SaveChanges();
+            return RedirectToAction("Index", "Products");
+        }
+    }
+}
